@@ -67,6 +67,9 @@
     <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="2CIMProfile_Labs">
+      <HintPath>..\Resources\2CIMProfile_Labs.dll</HintPath>
+    </Reference>
     <Reference Include="PowerTransformerCIMProfile_Labs, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\PowerTransformerCIMProfile_Labs.dll</HintPath>
