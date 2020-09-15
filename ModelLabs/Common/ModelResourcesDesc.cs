@@ -518,10 +518,10 @@ namespace FTN.Common
 		{
 			long temp = ((long)resourceId & (long)ModelCodeMask.MASK_INHERITANCE_ONLY);
 
-            if (!resourceDescs.ContainsKey(temp))
-            {
-                throw new Exception(string.Format("Invalid Model Code: {0}", resourceId));
-            }
+			if (!resourceDescs.ContainsKey(temp))
+			{
+				throw new Exception(string.Format("Invalid Model Code: {0}", resourceId));
+			}
 
 			return resourceDescs[temp];
 		}
@@ -865,28 +865,30 @@ namespace FTN.Common
 		# region Initialization of metadata
 
 		private void InitializeTypeIdsInInsertOrder()
-		{			
-			typeIdsInInsertOrder.Add(ModelCode.BASEVOLTAGE);
-			typeIdsInInsertOrder.Add(ModelCode.LOCATION);
-			typeIdsInInsertOrder.Add(ModelCode.POWERTR);
-			typeIdsInInsertOrder.Add(ModelCode.POWERTRWINDING);
-			typeIdsInInsertOrder.Add(ModelCode.WINDINGTEST);			
+		{
+			typeIdsInInsertOrder.Add(ModelCode.SHUNT_COMPENSATOR);
+			typeIdsInInsertOrder.Add(ModelCode.STATIC_VAR_COMPENSATOR);
+			typeIdsInInsertOrder.Add(ModelCode.TERMINAL);
+			typeIdsInInsertOrder.Add(ModelCode.REGULATING_CONTROL);
+			typeIdsInInsertOrder.Add(ModelCode.DAY_TYPE);
+			typeIdsInInsertOrder.Add(ModelCode.REGULATION_SCHEDULE);
 		}
 
 		private void InitializeNotSettablePropertyIds()
-		{			
-			notSettablePropertyIds.Add(ModelCode.IDOBJ_GID);
-			notSettablePropertyIds.Add(ModelCode.BASEVOLTAGE_CONDEQS);
-			notSettablePropertyIds.Add(ModelCode.LOCATION_PSRS);
-			notSettablePropertyIds.Add(ModelCode.POWERTRWINDING_TESTS);
-            notSettablePropertyIds.Add(ModelCode.POWERTR_WINDINGS);	
-		}
-	
-		# endregion Initialization of metadata
+		{
+			NotSettablePropertyIds.Add(ModelCode.IDOBJ_GID);
+            NotSettablePropertyIds.Add(ModelCode.CONDEQ_TERMINALS);
+            NotSettablePropertyIds.Add(ModelCode.TERMINAL_REGULATING_CONTROLS);
+			NotSettablePropertyIds.Add(ModelCode.REGULATING_CONTROL_REG_CONDEQS);
+			NotSettablePropertyIds.Add(ModelCode.REGULATING_CONTROL_REG_SCHEDS);
+			NotSettablePropertyIds.Add(ModelCode.DAY_TYPE_SEASON_DAYTYPE_SCHEDS);
+        }
 
-		# region Switching between enums and values
+        #endregion Initialization of metadata
 
-		private List<ModelCode> SwitchLongsToModelCodes(List<long> longValues)
+        #region Switching between enums and values
+
+        private List<ModelCode> SwitchLongsToModelCodes(List<long> longValues)
 		{
 			List<ModelCode> result = new List<ModelCode>();
 

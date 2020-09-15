@@ -84,16 +84,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\BaseVoltage .cs" />
+    <Compile Include="Core\BasicIntervalSchedule.cs" />
     <Compile Include="Core\ConductingEquipment.cs" />
+    <Compile Include="Core\DayType.cs" />
     <Compile Include="Core\Equipment.cs" />
-    <Compile Include="Core\Location.cs" />
     <Compile Include="Core\IdentifiedObject.cs" />
     <Compile Include="Core\PowerSystemResource.cs" />
+    <Compile Include="Core\RegularIntervalSchedule.cs" />
+    <Compile Include="LoadModel\SeasonDayTypeSchedule.cs" />
+    <Compile Include="Core\Terminal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Wires\WindingTest.cs" />
-    <Compile Include="Wires\PowerTransformer.cs" />
-    <Compile Include="Wires\TransformerWinding.cs" />
+    <Compile Include="Wires\RegulatingCondEq.cs" />
+    <Compile Include="Wires\RegulatingControl.cs" />
+    <Compile Include="Wires\RegulationSchedule.cs" />
+    <Compile Include="Wires\ShuntCompensator.cs" />
+    <Compile Include="Wires\StaticVarCompensator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Common\Common.csproj">

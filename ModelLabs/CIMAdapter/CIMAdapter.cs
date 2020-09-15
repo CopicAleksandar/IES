@@ -13,28 +13,28 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter
 {
 	public class CIMAdapter
 	{
-        private NetworkModelGDAProxy gdaQueryProxy = null;
-       
+		private NetworkModelGDAProxy gdaQueryProxy = null;
+	   
 		public CIMAdapter()
 		{
 		}
 
-        private NetworkModelGDAProxy GdaQueryProxy
-        {
-            get
-            {
-                if (gdaQueryProxy != null)
-                {
-                    gdaQueryProxy.Abort();
-                    gdaQueryProxy = null;
-                }
+		private NetworkModelGDAProxy GdaQueryProxy
+		{
+			get
+			{
+				if (gdaQueryProxy != null)
+				{
+					gdaQueryProxy.Abort();
+					gdaQueryProxy = null;
+				}
 
-                gdaQueryProxy = new NetworkModelGDAProxy("NetworkModelGDAEndpoint");
-                gdaQueryProxy.Open();
+				gdaQueryProxy = new NetworkModelGDAProxy("NetworkModelGDAEndpoint");
+				gdaQueryProxy.Open();
 
-                return gdaQueryProxy;
-            }
-        }
+				return gdaQueryProxy;
+			}
+		}
 
 		public Delta CreateDelta(Stream extract, SupportedProfiles extractType, out string log)
 		{
@@ -62,7 +62,7 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter
 			if ((delta != null) && (delta.NumberOfOperations != 0))
 			{
 				//// NetworkModelService->ApplyUpdates
-                updateResult = GdaQueryProxy.ApplyUpdate(delta).ToString();
+				updateResult = GdaQueryProxy.ApplyUpdate(delta).ToString();
 			}
 
 			Thread.CurrentThread.CurrentCulture = culture;
@@ -127,11 +127,11 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter
 					case SupportedProfiles.PowerTransformer:
 						{
 							// transformation to DMS delta					
-							TransformAndLoadReport report = PowerTransformerImporter.Instance.CreateNMSDelta(concreteModel);
+							TransformAndLoadReport report = IES1Importer.Instance.CreateNMSDelta(concreteModel);
 
 							if (report.Success)
 							{
-								nmsDelta = PowerTransformerImporter.Instance.NMSDelta;
+								nmsDelta = IES1Importer.Instance.NMSDelta;
 								success = true;
 							}
 							else
@@ -139,7 +139,7 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter
 								success = false;
 							}
 							log = report.Report.ToString();
-							PowerTransformerImporter.Instance.Reset();
+							IES1Importer.Instance.Reset();
 
 							break;
 						}
