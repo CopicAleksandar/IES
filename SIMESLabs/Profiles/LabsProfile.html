@@ -80,6 +80,25 @@ p.package { position: absolute; right: 10px; top: 0px}
 </a>
 <p class="package">LoadModel</p>
 <p class="comment">Group of similar days.   For example it could be used to represent weekdays, weekend, or holidays.</p>
+<h3>Native Members</h3>
+<table>
+<tr>
+<th>
+<p class="name" id="DayType.SeasonDayTypeSchedules">SeasonDayTypeSchedules</p>
+</th>
+<td>
+<p class="cardinality">0..unbounded</p>
+</td>
+<td class="type">
+<p class="type">
+<a href="#SeasonDayTypeSchedule">SeasonDayTypeSchedule</a>
+</p>
+</td>
+<td>
+<p class="comment">Schedules that use this DayType.</p>
+</td>
+</tr>
+</table>
 <h3>Inherited Members</h3>
 <table>
 <tr>
@@ -211,6 +230,54 @@ p.package { position: absolute; right: 10px; top: 0px}
 <p class="comment">The target value specified for case input.   This value can be used for the target value wihout the use of schedules. The value has the units appropriate to the mode attribute.</p>
 </td>
 </tr>
+<tr>
+<th>
+<p class="name" id="RegulatingControl.RegulatingCondEq">RegulatingCondEq</p>
+</th>
+<td>
+<p class="cardinality">0..unbounded</p>
+</td>
+<td class="type">
+<p class="type">
+<a href="#RegulatingCondEq">RegulatingCondEq</a>
+</p>
+</td>
+<td>
+<p class="comment">The equipment that participates in this regulating control scheme.</p>
+</td>
+</tr>
+<tr>
+<th>
+<p class="name" id="RegulatingControl.RegulationSchedule">RegulationSchedule</p>
+</th>
+<td>
+<p class="cardinality">0..unbounded</p>
+</td>
+<td class="type">
+<p class="type">
+<a href="#RegulationSchedule">RegulationSchedule</a>
+</p>
+</td>
+<td>
+<p class="comment">Schedule for this Regulating regulating control.</p>
+</td>
+</tr>
+<tr>
+<th>
+<p class="name" id="RegulatingControl.Terminal">Terminal</p>
+</th>
+<td>
+<p class="cardinality">0..1</p>
+</td>
+<td class="type">
+<p class="type">
+<a href="#Terminal">Terminal</a>
+</p>
+</td>
+<td>
+<p class="comment">The terminal associated with this regulating control.  The terminal is associated instead of a node, since the terminal could connect into either a topological node (bus in bus-branch model) or a connectivity node (detailed switch model).  Sometimes it is useful to model regulation at a terminal of a bus bar object since the bus bar can be present in both a bus-branch model or a model with switch detail.</p>
+</td>
+</tr>
 </table>
 <h3>Inherited Members</h3>
 <table/>
@@ -268,8 +335,45 @@ p.package { position: absolute; right: 10px; top: 0px}
 </a>
 <p class="package">Wires</p>
 <p class="comment">A pre-established pattern over time for a controlled variable, e.g., busbar voltage.</p>
+<h3>Native Members</h3>
+<table>
+<tr>
+<th>
+<p class="name" id="RegulationSchedule.RegulatingControl">RegulatingControl</p>
+</th>
+<td>
+<p class="cardinality">1..1</p>
+</td>
+<td class="type">
+<p class="type">
+<a href="#RegulatingControl">RegulatingControl</a>
+</p>
+</td>
+<td>
+<p class="comment">Regulating controls that have this Schedule.</p>
+</td>
+</tr>
+</table>
 <h3>Inherited Members</h3>
-<table/>
+<table>
+<tr>
+<th>
+<p class="name">DayType</p>
+</th>
+<td>
+<p class="cardinality">0..1</p>
+</td>
+<td class="type">
+<p class="type">
+<a href="#DayType">DayType</a>
+</p>
+</td>
+<td>
+<p>see <a class="superclass" href="#SeasonDayTypeSchedule.DayType">SeasonDayTypeSchedule</a>
+</p>
+</td>
+</tr>
+</table>
 <table/>
 <table>
 <tr>
@@ -411,8 +515,44 @@ p.package { position: absolute; right: 10px; top: 0px}
 <p class="package">Wires</p>
 <p class="comment">A shunt capacitor or reactor or switchable bank of shunt capacitors or reactors. A section of a shunt compensator is an individual capacitor or reactor.  A negative value for reactivePerSection indicates that the compensator is a reactor. ShuntCompensator is a single terminal device.  Ground is implied.</p>
 <h3>Inherited Members</h3>
-<table/>
-<table/>
+<table>
+<tr>
+<th>
+<p class="name">RegulatingControl</p>
+</th>
+<td>
+<p class="cardinality">0..1</p>
+</td>
+<td class="type">
+<p class="type">
+<a href="#RegulatingControl">RegulatingControl</a>
+</p>
+</td>
+<td>
+<p>see <a class="superclass" href="#RegulatingCondEq.RegulatingControl">RegulatingCondEq</a>
+</p>
+</td>
+</tr>
+</table>
+<table>
+<tr>
+<th>
+<p class="name">Terminals</p>
+</th>
+<td>
+<p class="cardinality">0..unbounded</p>
+</td>
+<td class="type">
+<p class="type">
+<a href="#Terminal">Terminal</a>
+</p>
+</td>
+<td>
+<p>see <a class="superclass" href="#ConductingEquipment.Terminals">ConductingEquipment</a>
+</p>
+</td>
+</tr>
+</table>
 <table>
 <tr>
 <th>
@@ -502,8 +642,44 @@ p.package { position: absolute; right: 10px; top: 0px}
 <p class="comment">A facility for providing variable and controllable shunt reactive power. The SVC typically consists of a stepdown transformer, filter, thyristor-controlled reactor, and thyristor-switched capacitor arms.</p>
 <p class="comment">The SVC may operate in fixed MVar output mode or in voltage control mode.  When in voltage control mode, the output of the SVC will be proportional to the deviation of voltage at the controlled bus from the voltage setpoint.  The SVC characteristic slope defines the proportion.  If the voltage at the controlled bus is equal to the voltage setpoint, the SVC MVar output is zero.</p>
 <h3>Inherited Members</h3>
-<table/>
-<table/>
+<table>
+<tr>
+<th>
+<p class="name">RegulatingControl</p>
+</th>
+<td>
+<p class="cardinality">0..1</p>
+</td>
+<td class="type">
+<p class="type">
+<a href="#RegulatingControl">RegulatingControl</a>
+</p>
+</td>
+<td>
+<p>see <a class="superclass" href="#RegulatingCondEq.RegulatingControl">RegulatingCondEq</a>
+</p>
+</td>
+</tr>
+</table>
+<table>
+<tr>
+<th>
+<p class="name">Terminals</p>
+</th>
+<td>
+<p class="cardinality">0..unbounded</p>
+</td>
+<td class="type">
+<p class="type">
+<a href="#Terminal">Terminal</a>
+</p>
+</td>
+<td>
+<p>see <a class="superclass" href="#ConductingEquipment.Terminals">ConductingEquipment</a>
+</p>
+</td>
+</tr>
+</table>
 <table>
 <tr>
 <th>
@@ -591,6 +767,41 @@ p.package { position: absolute; right: 10px; top: 0px}
 </a>
 <p class="package">Core</p>
 <p class="comment">An electrical connection point to a piece of conducting equipment. Terminals are connected at physical connection points called connectivity nodes.</p>
+<h3>Native Members</h3>
+<table>
+<tr>
+<th>
+<p class="name" id="Terminal.ConductingEquipment">ConductingEquipment</p>
+</th>
+<td>
+<p class="cardinality">1..1</p>
+</td>
+<td class="type">
+<p class="type">
+<a href="#ConductingEquipment">ConductingEquipment</a>
+</p>
+</td>
+<td>
+<p class="comment">The conducting equipment of the terminal.  Conducting equipment have  terminals that may be connected to other conducting equipment terminals via connectivity nodes or topological nodes.</p>
+</td>
+</tr>
+<tr>
+<th>
+<p class="name" id="Terminal.RegulatingControl">RegulatingControl</p>
+</th>
+<td>
+<p class="cardinality">0..unbounded</p>
+</td>
+<td class="type">
+<p class="type">
+<a href="#RegulatingControl">RegulatingControl</a>
+</p>
+</td>
+<td>
+<p class="comment">The controls regulating this terminal.</p>
+</td>
+</tr>
+</table>
 <h3>Inherited Members</h3>
 <table>
 <tr>
@@ -783,6 +994,25 @@ p.package { position: absolute; right: 10px; top: 0px}
 </a>
 <p class="package">Core</p>
 <p class="comment">The parts of the power system that are designed to carry current or that are conductively connected through terminals.</p>
+<h3>Native Members</h3>
+<table>
+<tr>
+<th>
+<p class="name" id="ConductingEquipment.Terminals">Terminals</p>
+</th>
+<td>
+<p class="cardinality">0..unbounded</p>
+</td>
+<td class="type">
+<p class="type">
+<a href="#Terminal">Terminal</a>
+</p>
+</td>
+<td>
+<p class="comment">Conducting equipment have terminals that may be connected to other conducting equipment terminals via connectivity nodes or topological nodes.</p>
+</td>
+</tr>
+</table>
 <h3>Inherited Members</h3>
 <table>
 <tr>
@@ -1208,8 +1438,45 @@ p.package { position: absolute; right: 10px; top: 0px}
 </a>
 <p class="package">Wires</p>
 <p class="comment">A type of conducting equipment that can regulate a quanity (i.e. voltage or flow) at a specific point in the network.</p>
+<h3>Native Members</h3>
+<table>
+<tr>
+<th>
+<p class="name" id="RegulatingCondEq.RegulatingControl">RegulatingControl</p>
+</th>
+<td>
+<p class="cardinality">0..1</p>
+</td>
+<td class="type">
+<p class="type">
+<a href="#RegulatingControl">RegulatingControl</a>
+</p>
+</td>
+<td>
+<p class="comment">The regulating control scheme in which this equipment participates.</p>
+</td>
+</tr>
+</table>
 <h3>Inherited Members</h3>
-<table/>
+<table>
+<tr>
+<th>
+<p class="name">Terminals</p>
+</th>
+<td>
+<p class="cardinality">0..unbounded</p>
+</td>
+<td class="type">
+<p class="type">
+<a href="#Terminal">Terminal</a>
+</p>
+</td>
+<td>
+<p>see <a class="superclass" href="#ConductingEquipment.Terminals">ConductingEquipment</a>
+</p>
+</td>
+</tr>
+</table>
 <table>
 <tr>
 <th>
@@ -1297,6 +1564,25 @@ p.package { position: absolute; right: 10px; top: 0px}
 </a>
 <p class="package">LoadModel</p>
 <p class="comment">A time schedule covering a 24 hour period, with curve data for a specific type of season and day.</p>
+<h3>Native Members</h3>
+<table>
+<tr>
+<th>
+<p class="name" id="SeasonDayTypeSchedule.DayType">DayType</p>
+</th>
+<td>
+<p class="cardinality">0..1</p>
+</td>
+<td class="type">
+<p class="type">
+<a href="#DayType">DayType</a>
+</p>
+</td>
+<td>
+<p class="comment">DayType for the Schedule.</p>
+</td>
+</tr>
+</table>
 <h3>Inherited Members</h3>
 <table/>
 <table>

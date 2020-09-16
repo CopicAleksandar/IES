@@ -124,30 +124,30 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter
 
 				switch (extractType)
 				{
-					case SupportedProfiles.PowerTransformer:
+					case SupportedProfiles.IES2:
+					{
+						// transformation to DMS delta					
+						TransformAndLoadReport report = IES1Importer.Instance.CreateNMSDelta(concreteModel);
+
+						if (report.Success)
 						{
-							// transformation to DMS delta					
-							TransformAndLoadReport report = IES1Importer.Instance.CreateNMSDelta(concreteModel);
-
-							if (report.Success)
-							{
-								nmsDelta = IES1Importer.Instance.NMSDelta;
-								success = true;
-							}
-							else
-							{
-								success = false;
-							}
-							log = report.Report.ToString();
-							IES1Importer.Instance.Reset();
-
-							break;
+							nmsDelta = IES1Importer.Instance.NMSDelta;
+							success = true;
 						}
+						else
+						{
+							success = false;
+						}
+
+						log = report.Report.ToString();
+						IES1Importer.Instance.Reset();
+						break;
+					}
 					default:
-						{
-							LogManager.Log(string.Format("Import of {0} data is NOT SUPPORTED.", extractType), LogLevel.Warning);
-							break;
-						}
+					{
+						LogManager.Log(string.Format("Import of {0} data is NOT SUPPORTED.", extractType), LogLevel.Warning);
+						break;
+					}
 				}
 
 				return success;
@@ -158,6 +158,5 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter
 				return false;
 			}
 		}
-
 	}
 }
