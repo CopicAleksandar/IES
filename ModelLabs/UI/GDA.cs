@@ -39,7 +39,7 @@ namespace UI
 			}
 		}
 
-		#region GDA
+		#region GDA Queries
 		
 		public ResourceDescription GetValues(long globalId, List<ModelCode> properties)
 		{
@@ -74,8 +74,8 @@ namespace UI
 			int numberOfResources = 300;
 			var ids = new List<long>();
 			var tempSb = new StringBuilder();
-            
-            try
+			
+			try
 			{
 				iteratorId = GdaQueryProxy.GetExtentValues(modelCodeType, properties);
 				resourcesLeft = GdaQueryProxy.IteratorResourcesLeft(iteratorId);

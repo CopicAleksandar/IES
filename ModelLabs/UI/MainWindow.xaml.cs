@@ -263,12 +263,8 @@ namespace UI
 
             PopulateProperties(PropertiesRelated, propertiesDescRelated, targetEntity);
         }
-
-        private void RelationalTypes_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
+        
+        
         private DMSType GetTypeFromReferenceModelCode(long modelCode)
         {
             var rd = gda.GetValues(selectedGIDRelated, new List<ModelCode>() { (ModelCode)modelCode });
