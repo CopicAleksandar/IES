@@ -21,6 +21,8 @@ namespace UI
     /// </summary>
     public partial class MainWindow : Window
     {
+        #region Fields
+
         private GDA gda;
         private ModelResourcesDesc modelResourcesDesc = new ModelResourcesDesc();
         private Dictionary<ModelCode, string> propertiesDesc = new Dictionary<ModelCode, string>();
@@ -33,6 +35,8 @@ namespace UI
         private long selectedGIDRelated = -1;
         private long selectedRelProp = -1;
         private long selectedRelType = -1;
+
+        #endregion
 
         public MainWindow()
         {
@@ -68,14 +72,14 @@ namespace UI
             selectedDMSType = -1;
         }
 
+        #region Populate properties
+
         private void PopulateProperties(StackPanel propertiesPanel, Dictionary<ModelCode, string> propContainer, DMSType type)
         {
             if ((long)type == -1)
                 return;
 
             propertiesPanel.Children.Clear();
-
-            
 
             List<ModelCode> properties = modelResourcesDesc.GetAllPropertyIds(type);
 
@@ -89,10 +93,23 @@ namespace UI
                 {
                     Content = string.Format("{0:X}", property.ToString()),
                 };
+
                 propertiesPanel.Children.Add(checkBox);
             }
         }
-        
+
+        #endregion
+
+        #region Values tab
+
+        private void GIDs_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //long.TryParse(GIDs.SelectedItem.ToString(), out selectedGID);
+            selectedGID = longGids[GIDs.SelectedIndex];
+            var type = ModelCodeHelper.ExtractTypeFromGlobalId(selectedGID);
+            PopulateProperties(Properties, propertiesDesc, (DMSType)type);
+        }
+
         private void Button_Click_GetValues(object sender, RoutedEventArgs e)
         {
             if (selectedGID == -1)
@@ -160,6 +177,16 @@ namespace UI
             Values.AppendText(sb.ToString());
         }
 
+        #endregion
+
+        #region ExtentValues tab
+
+        private void DMSTypes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            selectedDMSType = (long)DMSTypes.SelectedItem;
+            PopulateProperties(PropertiesExtent, propertiesDescExtended, ModelCodeHelper.GetTypeFromModelCode((ModelCode)selectedDMSType));
+        }
+
         private void Button_Click_GetExtentValues(object sender, RoutedEventArgs e)
         {
             if (selectedDMSType == -1)
@@ -197,19 +224,9 @@ namespace UI
             ValuesExtent.AppendText(sb.ToString());
         }
 
-        private void DMSTypes_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            selectedDMSType = (long)DMSTypes.SelectedItem;
-            PopulateProperties(PropertiesExtent, propertiesDescExtended, ModelCodeHelper.GetTypeFromModelCode((ModelCode)selectedDMSType));
-        }
+        #endregion
 
-        private void GIDs_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            //long.TryParse(GIDs.SelectedItem.ToString(), out selectedGID);
-            selectedGID = longGids[GIDs.SelectedIndex];
-            var type = ModelCodeHelper.ExtractTypeFromGlobalId(selectedGID);
-            PopulateProperties(Properties, propertiesDesc, (DMSType)type);
-        }
+        #region RelatedValues tab
 
         private void RelatedGIDs_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -247,7 +264,34 @@ namespace UI
             PopulateProperties(PropertiesRelated, propertiesDescRelated, targetEntity);
         }
 
-        
+        private void RelationalTypes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private DMSType GetTypeFromReferenceModelCode(long modelCode)
+        {
+            var rd = gda.GetValues(selectedGIDRelated, new List<ModelCode>() { (ModelCode)modelCode });
+            var prop = rd.GetProperty((ModelCode)modelCode);
+
+            long gid = -1;
+            if (prop.IsCompatibleWith(PropertyType.ReferenceVector))
+            {
+                if (prop.AsReferences().Count > 0)
+                    gid = prop.AsReferences()[0];
+            }
+            else
+            {
+                gid = prop.AsReference();
+            }
+
+            if (gid == -1)
+                return DMSType.MASK_TYPE;
+
+            var targetEntity = (DMSType)ModelCodeHelper.ExtractTypeFromGlobalId(gid);
+            return targetEntity;
+        }
+
         private void Button_Click_GetRelatedValues(object sender, RoutedEventArgs e)
         {
             if (selectedRelProp == -1)
@@ -284,32 +328,7 @@ namespace UI
             ValuesRelated.AppendText(sb.ToString());
         }
 
-        private DMSType GetTypeFromReferenceModelCode(long modelCode)
-        {
-            var rd = gda.GetValues(selectedGIDRelated, new List<ModelCode>() { (ModelCode)modelCode });
-            var prop = rd.GetProperty((ModelCode)modelCode);
-
-            long gid = -1;
-            if (prop.IsCompatibleWith(PropertyType.ReferenceVector))
-            {
-                if (prop.AsReferences().Count > 0)
-                    gid = prop.AsReferences()[0];
-            }
-            else
-            {
-                gid = prop.AsReference();
-            }
-
-            if (gid == -1)
-                return DMSType.MASK_TYPE;
-
-            var targetEntity = (DMSType)ModelCodeHelper.ExtractTypeFromGlobalId(gid);
-            return targetEntity;
-        }
-
-        private void RelationalTypes_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
+        #endregion
+        
     }
 }

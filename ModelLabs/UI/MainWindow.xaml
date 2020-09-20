@@ -32,7 +32,7 @@
                 <Grid Margin="0,-5,0,-7">
                     <Label Content="GID:" Margin="20,24,722,381" RenderTransformOrigin="0.47,-0.38"/>
                     <ComboBox Name="GIDsRelated" HorizontalAlignment="Left" Margin="147,28,0,0" VerticalAlignment="Top" Width="198" SelectionChanged="RelatedGIDs_SelectionChanged"/>
-                    <Label Content="Relational Properties:" Margin="19,62,641,337" RenderTransformOrigin="0.47,-0.38"/>
+                    <Label Content="References:" Margin="19,62,641,337" RenderTransformOrigin="0.47,-0.38"/>
                     <ComboBox Name="RelationalProps" HorizontalAlignment="Left" Margin="147,66,0,0" VerticalAlignment="Top" Width="198" SelectionChanged="RelationalProps_SelectionChanged"/>
                     <Label Content="Related Type:" Margin="20,98,640,300" RenderTransformOrigin="0.47,-0.38"/>
                     <ComboBox Name="RelationalTypes" HorizontalAlignment="Left" Margin="147,102,0,0" VerticalAlignment="Top" Width="198" SelectionChanged="RelationalTypes_SelectionChanged"/>

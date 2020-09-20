@@ -94,16 +94,25 @@
         <cim:IdentifiedObject.mRID>RS_1</cim:IdentifiedObject.mRID>
         <cim:IdentifiedObject.name>RegulationSchedule</cim:IdentifiedObject.name>
         <cim:IdentifiedObject.aliasName>RegulationSchedule_1</cim:IdentifiedObject.aliasName>    
-        <cim:SeasonDayTypeSchedule.DayType rdf:resource="DT_1"/>        
+        <cim:SeasonDayTypeSchedule.DayType rdf:resource="DT_1"/>
+        <cim:RegulationSchedule.RegulatingControl rdf:resource="RC_1"/>
     </cim:RegulationSchedule>    
     
     <cim:RegulationSchedule rdf:ID="RS_2">
         <cim:IdentifiedObject.mRID>RS_2</cim:IdentifiedObject.mRID>
         <cim:IdentifiedObject.name>RegulationSchedule</cim:IdentifiedObject.name>
         <cim:IdentifiedObject.aliasName>RegulationSchedule_2</cim:IdentifiedObject.aliasName>    
-        <cim:SeasonDayTypeSchedule.DayType rdf:resource="DT_2"/>        
+        <cim:SeasonDayTypeSchedule.DayType rdf:resource="DT_2"/>   
+        <cim:RegulationSchedule.RegulatingControl rdf:resource="RC_2"/>        
     </cim:RegulationSchedule>
     
+    <cim:RegulationSchedule rdf:ID="RS_3">
+        <cim:IdentifiedObject.mRID>RS_3</cim:IdentifiedObject.mRID>
+        <cim:IdentifiedObject.name>RegulationSchedule</cim:IdentifiedObject.name>
+        <cim:IdentifiedObject.aliasName>RegulationSchedule_3</cim:IdentifiedObject.aliasName>    
+        <cim:SeasonDayTypeSchedule.DayType rdf:resource="DT_1"/>   
+        <cim:RegulationSchedule.RegulatingControl rdf:resource="RC_1"/>        
+    </cim:RegulationSchedule>
     
     <!-- Terminal -->
     
