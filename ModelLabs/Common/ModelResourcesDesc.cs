@@ -866,29 +866,36 @@ namespace FTN.Common
 
 		private void InitializeTypeIdsInInsertOrder()
 		{
-			typeIdsInInsertOrder.Add(ModelCode.SHUNT_COMPENSATOR);
-			typeIdsInInsertOrder.Add(ModelCode.STATIC_VAR_COMPENSATOR);
-			typeIdsInInsertOrder.Add(ModelCode.TERMINAL);
+			//typeIdsInInsertOrder.Add(ModelCode.SHUNT_COMPENSATOR);
+			//typeIdsInInsertOrder.Add(ModelCode.STATIC_VAR_COMPENSATOR);
+			//typeIdsInInsertOrder.Add(ModelCode.TERMINAL);
+			//typeIdsInInsertOrder.Add(ModelCode.REGULATING_CONTROL);
+			//typeIdsInInsertOrder.Add(ModelCode.DAY_TYPE);
+			//typeIdsInInsertOrder.Add(ModelCode.REGULATION_SCHEDULE);
+
 			typeIdsInInsertOrder.Add(ModelCode.REGULATING_CONTROL);
+			typeIdsInInsertOrder.Add(ModelCode.STATIC_VAR_COMPENSATOR);
+			typeIdsInInsertOrder.Add(ModelCode.SHUNT_COMPENSATOR);                       
 			typeIdsInInsertOrder.Add(ModelCode.DAY_TYPE);
 			typeIdsInInsertOrder.Add(ModelCode.REGULATION_SCHEDULE);
+			typeIdsInInsertOrder.Add(ModelCode.TERMINAL);
 		}
 
 		private void InitializeNotSettablePropertyIds()
 		{
 			NotSettablePropertyIds.Add(ModelCode.IDOBJ_GID);
-            NotSettablePropertyIds.Add(ModelCode.CONDEQ_TERMINALS);
-            NotSettablePropertyIds.Add(ModelCode.TERMINAL_REGULATING_CONTROLS);
+			NotSettablePropertyIds.Add(ModelCode.CONDEQ_TERMINALS);
+			NotSettablePropertyIds.Add(ModelCode.TERMINAL_REGULATING_CONTROLS);
 			NotSettablePropertyIds.Add(ModelCode.REGULATING_CONTROL_REG_CONDEQS);
 			NotSettablePropertyIds.Add(ModelCode.REGULATING_CONTROL_REG_SCHEDS);
 			NotSettablePropertyIds.Add(ModelCode.DAY_TYPE_SEASON_DAYTYPE_SCHEDS);
-        }
+		}
 
-        #endregion Initialization of metadata
+		#endregion Initialization of metadata
 
-        #region Switching between enums and values
+		#region Switching between enums and values
 
-        private List<ModelCode> SwitchLongsToModelCodes(List<long> longValues)
+		private List<ModelCode> SwitchLongsToModelCodes(List<long> longValues)
 		{
 			List<ModelCode> result = new List<ModelCode>();
 

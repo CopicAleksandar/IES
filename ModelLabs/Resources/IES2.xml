@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+		 xmlns:cim="http://iec.ch/TC57/2010/CIM-schema-cim15#"
+		 xmlns:ftn="http://www.ftnydro.com/CIM15/2010/extension#">
+    
+    
+    <!-- RegulatingControl -->
+    
+    <cim:RegulatingControl rdf:ID="RC_1">
+        <cim:IdentifiedObject.mRID>RC_1</cim:IdentifiedObject.mRID>
+        <cim:IdentifiedObject.name>RegulatingControl</cim:IdentifiedObject.name>
+        <cim:IdentifiedObject.aliasName>RegulatingControl_1</cim:IdentifiedObject.aliasName>                
+        <cim:RegulatingControl.discrete>false</cim:RegulatingControl.discrete>
+		<cim:RegulatingControl.mode>voltage</cim:RegulatingControl.mode>
+		<cim:RegulatingControl.monitoredPhase>ABC</cim:RegulatingControl.monitoredPhase>
+		<cim:RegulatingControl.targetRange>1.0</cim:RegulatingControl.targetRange>
+		<cim:RegulatingControl.targetValue>11.0</cim:RegulatingControl.targetValue>
+        <!-- <cim:RegulatingControl.Terminal rdf:resource="T_1"/> -->
+    </cim:RegulatingControl>
+    
+    <cim:RegulatingControl rdf:ID="RC_2">
+        <cim:IdentifiedObject.mRID>RC_2</cim:IdentifiedObject.mRID>
+        <cim:IdentifiedObject.name>RegulatingControl</cim:IdentifiedObject.name>
+        <cim:IdentifiedObject.aliasName>RegulatingControl_2</cim:IdentifiedObject.aliasName>        
+        <cim:RegulatingControl.discrete>true</cim:RegulatingControl.discrete>
+		<cim:RegulatingControl.mode>temperature</cim:RegulatingControl.mode>
+		<cim:RegulatingControl.monitoredPhase>BN</cim:RegulatingControl.monitoredPhase>
+		<cim:RegulatingControl.targetRange>2.0</cim:RegulatingControl.targetRange>
+		<cim:RegulatingControl.targetValue>22.0</cim:RegulatingControl.targetValue>
+        <!-- <cim:RegulatingControl.Terminal rdf:resource="T_2"/> -->
+    </cim:RegulatingControl>
+    
+    
+    <!-- StaticVarCompensator -->
+    
+    <cim:StaticVarCompensator rdf:ID="SVC_1">
+        <cim:IdentifiedObject.mRID>SVC_1</cim:IdentifiedObject.mRID>
+        <cim:IdentifiedObject.name>StaticVarCompensator</cim:IdentifiedObject.name>
+        <cim:IdentifiedObject.aliasName>StaticVarCompensator_1</cim:IdentifiedObject.aliasName>        
+        <cim:Equipment.aggregate>true</cim:Equipment.aggregate>
+		<cim:Equipment.normallyInService>true</cim:Equipment.normallyInService>
+        <cim:RegulatingCondEq.RegulatingControl rdf:resource="RC_1"/>
+    </cim:StaticVarCompensator>
+    
+    <cim:StaticVarCompensator rdf:ID="SVC_2">
+        <cim:IdentifiedObject.mRID>SVC_2</cim:IdentifiedObject.mRID>
+        <cim:IdentifiedObject.name>StaticVarCompensator</cim:IdentifiedObject.name>
+        <cim:IdentifiedObject.aliasName>StaticVarCompensator_2</cim:IdentifiedObject.aliasName>        
+        <cim:Equipment.aggregate>true</cim:Equipment.aggregate>
+		<cim:Equipment.normallyInService>false</cim:Equipment.normallyInService>
+        <cim:RegulatingCondEq.RegulatingControl rdf:resource="RC_2"/>        
+    </cim:StaticVarCompensator>
+    
+    
+    <!-- ShuntCompensator -->
+    
+    <cim:ShuntCompensator rdf:ID="SC_1">
+        <cim:IdentifiedObject.mRID>SC_1</cim:IdentifiedObject.mRID>
+        <cim:IdentifiedObject.name>ShuntCompensator</cim:IdentifiedObject.name>
+        <cim:IdentifiedObject.aliasName>ShuntCompensator_1</cim:IdentifiedObject.aliasName>        
+        <cim:Equipment.aggregate>true</cim:Equipment.aggregate>
+		<cim:Equipment.normallyInService>true</cim:Equipment.normallyInService>
+        <cim:RegulatingCondEq.RegulatingControl rdf:resource="RC_1"/>
+    </cim:ShuntCompensator>
+    
+    <cim:ShuntCompensator rdf:ID="SC_2">
+        <cim:IdentifiedObject.mRID>SC_2</cim:IdentifiedObject.mRID>
+        <cim:IdentifiedObject.name>ShuntCompensator</cim:IdentifiedObject.name>
+        <cim:IdentifiedObject.aliasName>ShuntCompensator_2</cim:IdentifiedObject.aliasName>        
+        <cim:Equipment.aggregate>true</cim:Equipment.aggregate>
+		<cim:Equipment.normallyInService>false</cim:Equipment.normallyInService>
+        <cim:RegulatingCondEq.RegulatingControl rdf:resource="RC_2"/>        
+    </cim:ShuntCompensator>  
+    
+    
+    <!-- DayType -->
+    
+    <cim:DayType rdf:ID="DT_1">
+        <cim:IdentifiedObject.mRID>DT_1</cim:IdentifiedObject.mRID>
+        <cim:IdentifiedObject.name>DayType</cim:IdentifiedObject.name>
+        <cim:IdentifiedObject.aliasName>DayType_1</cim:IdentifiedObject.aliasName>    
+    </cim:DayType>    
+    
+    <cim:DayType rdf:ID="DT_2">
+        <cim:IdentifiedObject.mRID>DT_2</cim:IdentifiedObject.mRID>
+        <cim:IdentifiedObject.name>DayType</cim:IdentifiedObject.name>
+        <cim:IdentifiedObject.aliasName>DayType_2</cim:IdentifiedObject.aliasName>   
+    </cim:DayType>
+    
+    
+    <!-- RegulationSchedule -->
+    
+    <cim:RegulationSchedule rdf:ID="RS_1">
+        <cim:IdentifiedObject.mRID>RS_1</cim:IdentifiedObject.mRID>
+        <cim:IdentifiedObject.name>RegulationSchedule</cim:IdentifiedObject.name>
+        <cim:IdentifiedObject.aliasName>RegulationSchedule_1</cim:IdentifiedObject.aliasName>    
+        <cim:SeasonDayTypeSchedule.DayType rdf:resource="DT_1"/>        
+    </cim:RegulationSchedule>    
+    
+    <cim:RegulationSchedule rdf:ID="RS_2">
+        <cim:IdentifiedObject.mRID>RS_2</cim:IdentifiedObject.mRID>
+        <cim:IdentifiedObject.name>RegulationSchedule</cim:IdentifiedObject.name>
+        <cim:IdentifiedObject.aliasName>RegulationSchedule_2</cim:IdentifiedObject.aliasName>    
+        <cim:SeasonDayTypeSchedule.DayType rdf:resource="DT_2"/>        
+    </cim:RegulationSchedule>
+    
+    
+    <!-- Terminal -->
+    
+    <cim:Terminal rdf:ID="T_1">
+        <cim:IdentifiedObject.mRID>T_1</cim:IdentifiedObject.mRID>
+        <cim:IdentifiedObject.name>Terminal</cim:IdentifiedObject.name>
+        <cim:IdentifiedObject.aliasName>Terminal_1</cim:IdentifiedObject.aliasName>
+        <cim:Terminal.ConductingEquipment rdf:resource="SVC_1"/>
+    </cim:Terminal>
+    
+    <cim:Terminal rdf:ID="T_2">
+        <cim:IdentifiedObject.mRID>T_2</cim:IdentifiedObject.mRID>
+        <cim:IdentifiedObject.name>Terminal</cim:IdentifiedObject.name>
+        <cim:IdentifiedObject.aliasName>Terminal_2</cim:IdentifiedObject.aliasName>
+        <cim:Terminal.ConductingEquipment rdf:resource="SC_1"/>
+    </cim:Terminal>    
+    
+</rdf:RDF>

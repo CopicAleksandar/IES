@@ -92,13 +92,14 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter.Importer
 			LogManager.Log("Loading elements and creating delta...", LogLevel.Info);
 
 			//// import all concrete model types (DMSType enum)
-			Import<Terminal>(DMSType.TERMINAL, "FTN.Terminal");
-			Import<RegulationSchedule>(DMSType.REGULATION_SCHEDULE, "FTN.RegulationSchedule");
+			
 			Import<RegulatingControl>(DMSType.REGULATING_CONTROL, "FTN.RegulatingControl");
-			Import<DayType>(DMSType.DAY_TYPE, "FTN.DayType");
 			Import<StaticVarCompensator>(DMSType.STATIC_VAR_COMPENSATOR, "FTN.StaticVarCompensator");
 			Import<ShuntCompensator>(DMSType.SHUNT_COMPENSATOR, "FTN.ShuntCompensator");
-			
+			Import<DayType>(DMSType.DAY_TYPE, "FTN.DayType");
+			Import<RegulationSchedule>(DMSType.REGULATION_SCHEDULE, "FTN.RegulationSchedule");
+			Import<Terminal>(DMSType.TERMINAL, "FTN.Terminal");
+
 			LogManager.Log("Loading elements and creating delta completed.", LogLevel.Info);
 		}
 
