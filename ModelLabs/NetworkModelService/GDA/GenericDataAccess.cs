@@ -195,6 +195,5 @@ namespace FTN.Services.NetworkModelService
 				return resourceItMap.Remove(iteratorId);
 			}
 		}
-
 	}
 }

@@ -6,8 +6,7 @@ namespace FTN.ServiceContracts
 {
 	public class NetworkModelGDAProxy : ClientBase<INetworkModelGDAContract>, INetworkModelGDAContract
 	{
-		public NetworkModelGDAProxy(string endpointName)
-			: base(endpointName)
+		public NetworkModelGDAProxy(string endpointName) : base(endpointName)
 		{
 		}
 

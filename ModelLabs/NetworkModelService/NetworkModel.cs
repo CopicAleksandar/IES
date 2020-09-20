@@ -761,5 +761,16 @@ namespace FTN.Services.NetworkModelService
 			return typesCounters;
 		}
 
-	}
+        public List<long> GetGIDs()
+        {
+            List<long> ret = new List<long>();
+
+            foreach (var item in networkDataModel)
+            {
+                ret.AddRange(item.Value.Entities.Keys);
+            }
+            return ret;
+        }
+
+    }
 }

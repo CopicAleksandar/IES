@@ -5,8 +5,37 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="ModelLabs" Height="486" Width="800">
     <Grid>
-        
+        <TabControl Margin="0,0,-1,-2">
+            <TabItem Header="Values">
+                <Grid Margin="0,-5,0,-7">
+                    <Label Content="GID:" Margin="20,28,727,373" RenderTransformOrigin="0.47,-0.38"/>
+                    <ComboBox Name="GIDs" HorizontalAlignment="Left" Margin="63,30,0,0" VerticalAlignment="Top" Width="198" SelectionChanged="GIDs_SelectionChanged"/>
+                    <Label Content="Properties:" Margin="20,75,694,330" RenderTransformOrigin="0.47,-0.38"/>
+                    <StackPanel Name="Properties" Margin="30,106,473,31"/>
+                    <Button Content="GetValues >" HorizontalAlignment="Left" Margin="340,212,0,0" VerticalAlignment="Top" Width="74" RenderTransformOrigin="0.52,0.775" Click="Button_Click_GetValues"/>
+                    <TextBox Name="Values" Margin="458,29,18,29" TextWrapping="Wrap" Text=""/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="ExtentValues">
+                <Grid Margin="0,-5,0,-7">
+                    <Label Content="DMSType:" Margin="20,28,688,370" RenderTransformOrigin="0.47,-0.38"/>
+                    <ComboBox Name="DMSTypes" HorizontalAlignment="Left" Margin="111,29,0,0" VerticalAlignment="Top" Width="198" SelectionChanged="DMSTypes_SelectionChanged"/>
+                    <Label Content="Properties:" Margin="20,75,694,315" RenderTransformOrigin="0.47,-0.38"/>
+                    <StackPanel Name="PropertiesExtent" Margin="30,106,473,31"/>
+                    <Button Content="GetExtentValues >" HorizontalAlignment="Left" Margin="332,212,0,0" VerticalAlignment="Top" Width="104" RenderTransformOrigin="0.52,0.775" Click="Button_Click_GetExtentValues"/>
+                    <TextBox Name="ValuesExtent" Margin="458,29,18,29" TextWrapping="Wrap" Text=""/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="RelatedValues">
+                <Grid Margin="0,-5,0,-7">
+
+
+
+                </Grid>
+            </TabItem>
+
+        </TabControl>
     </Grid>
 </Window>

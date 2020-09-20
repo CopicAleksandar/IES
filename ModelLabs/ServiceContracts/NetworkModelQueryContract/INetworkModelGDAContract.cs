@@ -87,5 +87,6 @@ namespace FTN.ServiceContracts
 		/// <returns>TRUE if iterator is successfully closed</returns>
 		[OperationContract]		
 		bool IteratorClose(int id);
+        
 	}
 }
