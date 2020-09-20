@@ -61,7 +61,7 @@ namespace UI
             longGids.ForEach(g =>
             {
                 GIDs.Items.Add(string.Format("{0:X16}", g));
-                //GIDsRelated.Items.Add(string.Format("{0:X16}", g));
+                GIDsRelated.Items.Add(string.Format("{0:X16}", g));
             });
 
             selectedGID = -1;
@@ -209,6 +209,107 @@ namespace UI
             selectedGID = longGids[GIDs.SelectedIndex];
             var type = ModelCodeHelper.ExtractTypeFromGlobalId(selectedGID);
             PopulateProperties(Properties, propertiesDesc, (DMSType)type);
+        }
+
+        private void RelatedGIDs_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            RelationalProps.Items.Clear();
+            RelationalTypes.Items.Clear();
+            PropertiesRelated.Children.Clear();
+
+            selectedGIDRelated = longGids[GIDsRelated.SelectedIndex];
+            short type = ModelCodeHelper.ExtractTypeFromGlobalId(selectedGIDRelated);
+            List<ModelCode> properties = modelResourcesDesc.GetAllPropertyIds((DMSType)type);
+
+            foreach (ModelCode property in properties)
+            {
+                var prop = new Property(property);
+                if (prop.Type != PropertyType.Reference && prop.Type != PropertyType.ReferenceVector)
+                    continue;
+
+                RelationalProps.Items.Add(property);
+            }
+        }
+
+        private void RelationalProps_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (RelationalProps.SelectedItem == null)
+                return;
+
+            RelationalTypes.Items.Clear();
+
+            selectedRelProp = (long)RelationalProps.SelectedItem;
+
+            var targetEntity = GetTypeFromReferenceModelCode(selectedRelProp);
+
+            RelationalTypes.Items.Add(targetEntity);
+
+            PopulateProperties(PropertiesRelated, propertiesDescRelated, targetEntity);
+        }
+
+        
+        private void Button_Click_GetRelatedValues(object sender, RoutedEventArgs e)
+        {
+            if (selectedRelProp == -1)
+                return;
+
+            List<ModelCode> selectedProperties = new List<ModelCode>();
+
+            foreach (var child in PropertiesRelated.Children)
+            {
+                if (child is CheckBox checkBox && checkBox.IsChecked.Value)
+                {
+                    foreach (KeyValuePair<ModelCode, string> keyValuePair in propertiesDescRelated)
+                    {
+                        if (keyValuePair.Value.Equals(checkBox.Content))
+                        {
+                            selectedProperties.Add(keyValuePair.Key);
+                        }
+                    }
+                }
+            }
+
+            StringBuilder sb = new StringBuilder();
+            sb.Append("Returned entities" + Environment.NewLine + Environment.NewLine);
+
+            // Property is of reference type, but value not set so skip it.
+            var type = GetTypeFromReferenceModelCode(selectedRelProp);
+            if (type == DMSType.MASK_TYPE)
+                return;
+
+            var association = new Association((ModelCode)selectedRelProp, modelResourcesDesc.GetModelCodeFromType(type));
+            List<long> gids = gda.GetRelatedValues(selectedGIDRelated, selectedProperties, association, sb);
+
+            ValuesRelated.Clear();
+            ValuesRelated.AppendText(sb.ToString());
+        }
+
+        private DMSType GetTypeFromReferenceModelCode(long modelCode)
+        {
+            var rd = gda.GetValues(selectedGIDRelated, new List<ModelCode>() { (ModelCode)modelCode });
+            var prop = rd.GetProperty((ModelCode)modelCode);
+
+            long gid = -1;
+            if (prop.IsCompatibleWith(PropertyType.ReferenceVector))
+            {
+                if (prop.AsReferences().Count > 0)
+                    gid = prop.AsReferences()[0];
+            }
+            else
+            {
+                gid = prop.AsReference();
+            }
+
+            if (gid == -1)
+                return DMSType.MASK_TYPE;
+
+            var targetEntity = (DMSType)ModelCodeHelper.ExtractTypeFromGlobalId(gid);
+            return targetEntity;
+        }
+
+        private void RelationalTypes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

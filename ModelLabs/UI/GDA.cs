@@ -74,8 +74,8 @@ namespace UI
 			int numberOfResources = 300;
 			var ids = new List<long>();
 			var tempSb = new StringBuilder();
-
-			try
+            
+            try
 			{
 				iteratorId = GdaQueryProxy.GetExtentValues(modelCodeType, properties);
 				resourcesLeft = GdaQueryProxy.IteratorResourcesLeft(iteratorId);
@@ -88,7 +88,7 @@ namespace UI
 					{
 						if (rd == null)
 							continue;
-						tempSb.Append($"Entity with gid: 0x{rd.Id:X16}" + Environment.NewLine);
+						tempSb.Append($"\nEntity with gid: 0x{rd.Id:X16}" + Environment.NewLine);
 
 						foreach (var property in rd.Properties)
 						{
@@ -112,7 +112,7 @@ namespace UI
 
 								default:
 									tempSb.Append(
-										$"{property.Id}: {property.PropertyValue.LongValue}{Environment.NewLine}");
+										$"\t{property.Id}: {property.PropertyValue.LongValue}{Environment.NewLine}");
 									break;
 							}
 						}
@@ -190,7 +190,7 @@ namespace UI
 
 								default:
 									tempSb.Append(
-										$"{property.Id}: {property.PropertyValue.LongValue}{Environment.NewLine}");
+										$"\t{property.Id}: {property.PropertyValue.LongValue}{Environment.NewLine}");
 									break;
 							}
 						}
