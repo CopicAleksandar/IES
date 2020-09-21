@@ -47,7 +47,7 @@ namespace UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "GetValues", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, "GDA Exception", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             foreach (DMSType dmsType in Enum.GetValues(typeof(DMSType)))
@@ -292,11 +292,6 @@ namespace UI
 
             var targetEntity = (DMSType)ModelCodeHelper.ExtractTypeFromGlobalId(gid);
             return targetEntity;
-        }
-
-        private void RelationalTypes_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
 
         private void Button_Click_GetRelatedValues(object sender, RoutedEventArgs e)

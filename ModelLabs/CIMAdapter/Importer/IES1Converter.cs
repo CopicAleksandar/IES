@@ -84,10 +84,8 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter.Importer
                     long gid = importHelper.GetMappedGID(rc.Terminal.ID);
                     if (gid < 0)
                     {
-                        report.Report.Append("WARNING: Convert ").Append(rc.GetType().ToString()).Append(" rdfID = \"")
-                            .Append(rc.ID);
-                        report.Report.Append("\" - Failed to set reference to Terminal: rdfID \"")
-                            .Append(rc.Terminal.ID).AppendLine(" \" is not mapped to GID!");
+                        report.Report.Append("WARNING: Convert ").Append(rc.GetType().ToString()).Append(" rdfID = \"").Append(rc.ID);
+                        report.Report.Append("\" - Failed to set reference to Terminal: rdfID \"").Append(rc.Terminal.ID).AppendLine(" \" is not mapped to GID!");
                     }
 
                     rd.AddProperty(new Property(ModelCode.REGULATING_CONTROL_TERMINAL, gid));

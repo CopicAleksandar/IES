@@ -30,19 +30,19 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
 
 		public override bool HasProperty(ModelCode property)
 		{
-            return base.HasProperty(property);
-        }
+			return base.HasProperty(property);
+		}
 
 		public override void GetProperty(Property property)
 		{
-            base.GetProperty(property);
-        }
+			base.GetProperty(property);
+		}
 
-        public override void SetProperty(Property property)
+		public override void SetProperty(Property property)
 		{
-            base.SetProperty(property);
-        }
+			base.SetProperty(property);
+		}
 
-        #endregion IAccess implementation	
+		#endregion IAccess implementation	
 	}
 }

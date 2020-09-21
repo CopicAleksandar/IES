@@ -18,10 +18,10 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
 		{
 		}
 			
-        public bool IsAggregate { get => isAggregate; set => isAggregate = value; }
-        public bool IsNormallyInService { get => isNormallyInService; set => isNormallyInService = value; }
+		public bool IsAggregate { get => isAggregate; set => isAggregate = value; }
+		public bool IsNormallyInService { get => isNormallyInService; set => isNormallyInService = value; }
 
-        public override bool Equals(object obj)
+		public override bool Equals(object obj)
 		{
 			if (base.Equals(obj))
 			{
@@ -31,7 +31,7 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
 						(x.IsNormallyInService == this.IsNormallyInService));
 			}
 
-            return false;
+			return false;
 		}
 
 		public override int GetHashCode()
