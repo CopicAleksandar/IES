@@ -866,13 +866,6 @@ namespace FTN.Common
 
 		private void InitializeTypeIdsInInsertOrder()
 		{
-			//typeIdsInInsertOrder.Add(ModelCode.SHUNT_COMPENSATOR);
-			//typeIdsInInsertOrder.Add(ModelCode.STATIC_VAR_COMPENSATOR);
-			//typeIdsInInsertOrder.Add(ModelCode.TERMINAL);
-			//typeIdsInInsertOrder.Add(ModelCode.REGULATING_CONTROL);
-			//typeIdsInInsertOrder.Add(ModelCode.DAY_TYPE);
-			//typeIdsInInsertOrder.Add(ModelCode.REGULATION_SCHEDULE);
-
 			typeIdsInInsertOrder.Add(ModelCode.REGULATING_CONTROL);
 			typeIdsInInsertOrder.Add(ModelCode.STATIC_VAR_COMPENSATOR);
 			typeIdsInInsertOrder.Add(ModelCode.SHUNT_COMPENSATOR);                       
@@ -959,7 +952,6 @@ namespace FTN.Common
 
 	}
 
-
 	#region utility
 
 	/// <summary>
@@ -1010,4 +1002,5 @@ namespace FTN.Common
 	}
 
 	#endregion utility
+
 }

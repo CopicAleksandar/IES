@@ -109,10 +109,15 @@ namespace UI
 								case PropertyType.ReferenceVector:
 									StringAppender.AppendReferenceVector(tempSb, property);
 									break;
+								case PropertyType.Enum:
+									StringAppender.AppendEnum(tempSb, property);
+									break;
+								case PropertyType.DateTime:
+									StringAppender.AppendDateTime(tempSb, property);
+									break;
 
 								default:
-									tempSb.Append(
-										$"\t{property.Id}: {property.PropertyValue.LongValue}{Environment.NewLine}");
+									tempSb.Append($"\t{property.Id}: {property.PropertyValue.LongValue}{Environment.NewLine}");
 									break;
 							}
 						}
@@ -166,7 +171,7 @@ namespace UI
 					{
 						if (rd == null)
 							continue;
-						tempSb.Append($"Entity with gid: 0x{rd.Id:X16}" + Environment.NewLine);
+						tempSb.Append($"\nEntity with gid: 0x{rd.Id:X16}" + Environment.NewLine);
 
 						foreach (Property property in rd.Properties)
 						{
@@ -187,10 +192,14 @@ namespace UI
 								case PropertyType.ReferenceVector:
 									StringAppender.AppendReferenceVector(tempSb, property);
 									break;
-
+								case PropertyType.Enum:
+									StringAppender.AppendEnum(tempSb, property);
+									break;
+								case PropertyType.DateTime:
+									StringAppender.AppendDateTime(tempSb, property);
+									break;
 								default:
-									tempSb.Append(
-										$"\t{property.Id}: {property.PropertyValue.LongValue}{Environment.NewLine}");
+									tempSb.Append($"\t{property.Id}: {property.PropertyValue.LongValue}{Environment.NewLine}");
 									break;
 							}
 						}

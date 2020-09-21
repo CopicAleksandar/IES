@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
-        Title="ModelLabs" Height="486" Width="800">
+        Title="ModelLabs" Height="486" Width="899">
     <Grid>
         <TabControl Margin="0,0,-1,-2">
             <TabItem Header="Values">
@@ -35,7 +35,7 @@
                     <Label Content="References:" Margin="19,62,641,337" RenderTransformOrigin="0.47,-0.38"/>
                     <ComboBox Name="RelationalProps" HorizontalAlignment="Left" Margin="147,66,0,0" VerticalAlignment="Top" Width="198" SelectionChanged="RelationalProps_SelectionChanged"/>
                     <Label Content="Related Type:" Margin="20,98,640,300" RenderTransformOrigin="0.47,-0.38"/>
-                    <ListBox Name="RelationalTypes" HorizontalAlignment="Left" Margin="147,102,0,0" VerticalAlignment="Top" Width="198" SelectionChanged="RelationalTypes_SelectionChanged" Height="24"/>
+                    <ListBox Name="RelationalTypes" HorizontalAlignment="Left" Margin="147,102,0,0" VerticalAlignment="Top" Width="198" Height="22"/>
                     <Label Content="Properties:" Margin="20,138,639,265" RenderTransformOrigin="0.47,-0.38"/>
                     <StackPanel Name="PropertiesRelated" Margin="30,169,473,31"/>
                     <TextBox Name="ValuesRelated" Margin="458,29,18,29" TextWrapping="Wrap" Text=""/>

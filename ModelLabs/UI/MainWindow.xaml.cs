@@ -34,7 +34,6 @@ namespace UI
         private long selectedDMSType = -1;
         private long selectedGIDRelated = -1;
         private long selectedRelProp = -1;
-        private long selectedRelType = -1;
 
         #endregion
 
@@ -123,6 +122,7 @@ namespace UI
                     continue;
                 if (!checkBox.IsChecked.Value)
                     continue;
+
                 foreach (KeyValuePair<ModelCode, string> keyValuePair in propertiesDesc)
                 {
                     if (keyValuePair.Value.Equals(checkBox.Content))
@@ -166,9 +166,15 @@ namespace UI
                     case PropertyType.ReferenceVector:
                         StringAppender.AppendReferenceVector(sb, property);
                         break;
-
+                    case PropertyType.DateTime:
+                        StringAppender.AppendDateTime(sb, property);
+                        break;
+                    case PropertyType.Enum:
+                        StringAppender.AppendEnum(sb, property);
+                        break;
+                    
                     default:
-                        sb.Append($"{property.Id}: {property.PropertyValue.LongValue}{Environment.NewLine}");
+                        sb.Append($"\t{property.Id}: {property.PropertyValue.LongValue}{Environment.NewLine}");
                         break;
                 }
             }
@@ -286,6 +292,11 @@ namespace UI
 
             var targetEntity = (DMSType)ModelCodeHelper.ExtractTypeFromGlobalId(gid);
             return targetEntity;
+        }
+
+        private void RelationalTypes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
 
         private void Button_Click_GetRelatedValues(object sender, RoutedEventArgs e)
